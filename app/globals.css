@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+/* =====================================================
+   Otis Design System — CSS Custom Properties
+   Follows Apple Human Interface Guidelines color system
+   ===================================================== */
+
+:root {
+  /* Modern Clean Light Mode */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #ffffff;
+  --color-bg-elevated: rgba(255, 255, 255, 0.85);
+
+  --color-label-primary: #0f172a;
+  --color-label-secondary: #475569;
+  --color-label-tertiary: #94a3b8;
+  --color-label-quaternary: #cbd5e1;
+
+  --color-separator: #e2e8f0;
+  --color-separator-opaque: #cbd5e1;
+
+  --color-fill-primary: #f1f5f9;
+  --color-fill-secondary: #f8fafc;
+  --color-fill-tertiary: #ffffff;
+
+  --color-accent: #3b82f6;
+  --color-accent-light: #eff6ff;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-destructive: #ef4444;
+  --color-neutral: #64748b;
+
+  /* Font stack */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+}
+
+/* Dark mode — deep slate theme */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-bg-tertiary: #1e293b;
+    --color-bg-elevated: rgba(15, 23, 42, 0.85);
+
+    --color-label-primary: #f8fafc;
+    --color-label-secondary: #cbd5e1;
+    --color-label-tertiary: #94a3b8;
+    --color-label-quaternary: #64748b;
+
+    --color-separator: #334155;
+    --color-separator-opaque: #475569;
+
+    --color-fill-primary: #334155;
+    --color-fill-secondary: #1e293b;
+    --color-fill-tertiary: #0f172a;
+
+    --color-accent: #3b82f6;
+    --color-accent-light: rgba(59, 130, 246, 0.15);
+
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-destructive: #ef4444;
+    --color-neutral: #94a3b8;
+  }
+}
+
+/* =====================================================
+   Base Reset + Global Styles
+   ===================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-label-primary);
+  line-height: 1.5;
+  min-height: 100dvh;
+}
+
+/* Focus ring — visible on keyboard, invisible on click */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove default focus ring for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =====================================================
+   Scrollbar hiding (horizontal scroll containers)
+   ===================================================== */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* =====================================================
+   Safe area support
+   ===================================================== */
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* =====================================================
+   Shimmer utility (used by Skeleton components)
+   ===================================================== */
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      var(--color-fill-tertiary) 25%,
+      var(--color-fill-secondary) 50%,
+      var(--color-fill-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+/* =====================================================
+   Reduced Motion — Accessibility requirement
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
