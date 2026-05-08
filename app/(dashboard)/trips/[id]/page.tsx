@@ -1,5 +1,4 @@
 'use client';
-export const dynamic = 'force-dynamic';
 // app/(dashboard)/trips/[id]/page.tsx — Trip detail with itinerary + map
 
 import { Suspense } from 'react';
@@ -226,3 +225,5 @@ export default function TripDetailPage() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';

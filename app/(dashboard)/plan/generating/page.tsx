@@ -1,5 +1,4 @@
 'use client';
-export const dynamic = 'force-dynamic';
 // app/(dashboard)/plan/generating/page.tsx
 // Full-screen generation screen — no tab bar
 
@@ -248,3 +247,5 @@ export default function GeneratingPage() {
     </div>
   );
 }
+
+export const dynamic = 'force-dynamic';
