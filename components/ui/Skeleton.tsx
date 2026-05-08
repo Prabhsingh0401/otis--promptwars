@@ -1,7 +1,7 @@
 // components/ui/Skeleton.tsx
 // Shimmer skeleton components — always show before content (never spinners)
 
-import type { HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from 'react';
 
 // Base shimmer block
 function SkeletonBlock({ className = '', ...rest }: HTMLAttributes<HTMLDivElement>) {
@@ -59,7 +59,7 @@ export function TripCardSkeleton() {
 // Generic skeleton list
 export function SkeletonList({ count = 3, Skeleton = ActivityRowSkeleton }: {
   count?: number;
-  Skeleton?: () => JSX.Element;
+  Skeleton?: React.ComponentType;
 }) {
   return (
     <div role="status" aria-label="Loading content">
