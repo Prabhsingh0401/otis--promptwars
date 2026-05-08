@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic';
 
 import { Suspense } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import dynamic from 'next/dynamic';
+import nextDynamic from 'next/dynamic';
 import ItineraryBuilder from '@/components/planner/ItineraryBuilder';
 import WeatherWidget from '@/components/shared/WeatherWidget';
 import ErrorState from '@/components/ui/ErrorState';
@@ -13,7 +13,7 @@ import { useTrip, useSaveTrip } from '@/hooks/useItinerary';
 import type { Day } from '@/types';
 
 // Lazy-load Google Maps — heavy bundle
-const TravelMap = dynamic(() => import('@/components/map/TravelMap'), {
+const TravelMap = nextDynamic(() => import('@/components/map/TravelMap'), {
   ssr:     false,
   loading: () => (
     <div
