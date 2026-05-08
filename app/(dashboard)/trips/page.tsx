@@ -1,4 +1,5 @@
 'use client';
+export const dynamic = 'force-dynamic';
 // app/(dashboard)/trips/page.tsx — Trip list
 
 import Link from 'next/link';

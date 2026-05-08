@@ -14,10 +14,23 @@ const firebaseConfig = {
   appId:             process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Prevent re-initialization during hot reloads in development
-const app: FirebaseApp =
-  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+// Safe initialization for Build time / SSR without env vars
+const isConfigured = !!firebaseConfig.apiKey;
 
-export const auth: Auth = getAuth(app);
-export const db: Firestore = getFirestore(app);
+let app: FirebaseApp;
+let auth: Auth;
+let db: Firestore;
+
+if (isConfigured) {
+  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+  auth = getAuth(app);
+  db = getFirestore(app);
+} else {
+  // Mock objects for build time to prevent crashes
+  app = {} as FirebaseApp;
+  auth = {} as Auth;
+  db = {} as Firestore;
+}
+
+export { auth, db };
 export default app;
